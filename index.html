@@ -1,11 +1,69 @@
 <html>
 <head>
-<title>
-Mi fábrica de HTML
-</title>
+<title>Onuba</title>
+<style>
+    #audio-controls {
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+    }
+    #play-button, #pause-button {
+      background-color: blue;
+      color: white;
+      padding: 5px 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    #progress-bar {
+      width: 100%;
+      height: 5px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 7em;
+      color: #3776ff;
+      font-family: "Century Gothic";
+    }
+    h2 {
+      text-align: center;
+      font-size: 3em;
+      font-family: "Bookman Old Style";
+    }
+</style>
 </head>
-<body>
-<p><Font size="5" face="Arial" color="#0000FF">C</Font>aminante no hay camino...</p>
-<!-- Hemos puesto en Arial, con un tamaño relativo 5 y de azul la letra C. -->
+<body background=".\onubaDos.jpg" bgcolor="#fff9eb">
+  <hr>
+  <h1 align="center">Onuba</h1>
+  <h2 align="center">En pruebas.</h2>
+  <hr>
+  <audio id="audio-player" src="RaindropsKeepFallingOnMyHead.mp3"></audio>
+  <div id="audio-controls">
+    <button id="play-button">Play</button>
+    <button id="pause-button">Pause</button>
+    <progress id="progress-bar" value="0" max="100"></progress>
+  </div>
+  <script>
+    var audioPlayer = document.getElementById("audio-player");
+    var playButton = document.getElementById("play-button");
+    var pauseButton = document.getElementById("pause-button");
+    var progressBar = document.getElementById("progress-bar");
+
+    playButton.addEventListener("click", function() {
+      audioPlayer.play();
+    });
+
+    pauseButton.addEventListener("click", function() {
+      audioPlayer.pause();
+    });
+
+    audioPlayer.addEventListener("timeupdate", function() {
+      var currentTime = audioPlayer.currentTime;
+      var duration = audioPlayer.duration;
+      var progress = (currentTime / duration) * 100;
+
+      progressBar.value = progress;
+    });
+  </script>
 </body>
 </html>
